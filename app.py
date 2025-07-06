@@ -13,7 +13,7 @@ from pylsl import StreamInlet, resolve_byprop
 
 app = Flask(__name__)
 
-# The length of the shift between epochs in seconds
+# Low SHIFT_LENGTH value because higher frequency EEG data is being recorded
 SHIFT_LENGTH = 0.1
 
 # Time to record and respond to the neural signal
