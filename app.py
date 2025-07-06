@@ -111,9 +111,6 @@ def record_live():
     plt.legend()
     plt.savefig(f"time_&_freq_domain{now_time}.png")
 
-
-    print(collective_eeg_data)
-
 def plot_time_and_freq(freqs, mag, entire_raw_data, whole_timestamps, now_time):
     plt.figure(figsize=(10, 6))
 
