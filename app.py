@@ -91,8 +91,6 @@ def record_live():
         freq_arr_2d[i] = f
         mag_arr_2d[i] = m
 
-    print(f'freq_arr_2d: {freq_arr_2d.shape}')
-
     plt.figure(figsize=(10, 6))
     # First subplot (top)
     plt.subplot(2, 1, 1)
