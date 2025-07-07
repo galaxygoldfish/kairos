@@ -1,0 +1,100 @@
+EXPERIMENT: Detecting "Locked-In" Flow States via EEG
+
+OBJECTIVE:
+To determine when a user enters a mental "flow state" (locked-in focus) using EEG signals, task performance, and self-reporting.
+
+------------------------------------------------------------------
+1. TASK DESIGN
+------------------------------------------------------------------
+
+Create tasks that vary in difficulty and cognitive load:
+
+A) Boring Task (Low Load)
+   - Repetitive clicking
+   - Easy math problems
+
+B) Challenging Task (Flow Zone)
+   - Puzzles or logic problems that gradually increase in difficulty
+   - Coding mini-challenges
+   - Rhythm-based games
+
+C) Overwhelming Task (High Load)
+   - Tasks with time pressure beyond user capability
+   - Impossible puzzles
+
+Each task is done in ~3–5 minute blocks.
+
+------------------------------------------------------------------
+2. SELF-REPORTED FLOW
+------------------------------------------------------------------
+
+After each task block, ask the user:
+
+- "How 'in the zone' were you during this task? (1 to 10)"
+- "How difficult was the task? (1 to 10)"
+- Optional: Use a modified Flow State Scale (FSS)
+
+------------------------------------------------------------------
+3. EEG SETUP
+------------------------------------------------------------------
+
+- Use EEG headset (e.g., 8–32 channels)
+- Sampling rate: ≥256 Hz
+- Key electrodes: Fz, Cz, Pz, FCz, etc.
+
+Preprocessing:
+- Bandpass filter EEG: 0.5–40 Hz
+- Artifact removal: blink/motion correction if possible
+
+Extract features:
+- Band power in theta (4–8 Hz), alpha (8–12 Hz), beta (13–30 Hz)
+- Focus on:
+  - Frontal-midline theta (e.g., Fz)
+  - Parietal alpha (e.g., Pz)
+  - Frontal beta (e.g., FCz)
+
+Optional:
+- Compute coherence or phase-locking values between electrodes
+- Look for increased connectivity in frontal-parietal networks
+
+------------------------------------------------------------------
+4. LABEL AND TRAIN
+------------------------------------------------------------------
+
+- Label each task block with the self-reported flow score
+- Extract features from EEG during the same period
+- Train a classifier (e.g., logistic regression, SVM, or shallow neural net)
+- Inputs: Band power, coherence
+- Output: Flow probability score (0 to 1)
+
+------------------------------------------------------------------
+5. VALIDATION AND BEHAVIORAL METRICS
+------------------------------------------------------------------
+
+- Track task performance: accuracy, speed, reaction time
+- Optional:
+  - Heart rate variability (HRV)
+  - Mouse/keyboard rhythm
+  - Eye-tracking (fewer saccades during flow)
+
+Check correlation between:
+- Predicted flow vs. self-reported flow
+- Predicted flow vs. performance metrics
+
+------------------------------------------------------------------
+6. OPTIONAL: REAL-TIME FEEDBACK
+------------------------------------------------------------------
+
+- Display a flow meter or heatmap to user
+- Adapt task difficulty in real time based on focus
+- Trigger breaks or nudges if user drops out of flow
+
+------------------------------------------------------------------
+SUMMARY OF KEY EEG MARKERS:
+------------------------------------------------------------------
+
+- ↑ Frontal beta (13–25 Hz): active attention
+- ↑ Parietal alpha (8–12 Hz): relaxed alertness
+- ↑ Midline theta (4–8 Hz): cognitive control
+- ↓ Prefrontal overactivation: transient hypofrontality (in some cases)
+- ↑ Fronto-parietal coherence: focused engagement
