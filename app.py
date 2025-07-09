@@ -13,7 +13,7 @@ SHIFT_LENGTH = 0.25
 # Time to record and respond to the neural signal
 RUNTIME_SECONDS = 10
 
-def bandpass(data, fs, low= 8, high= 40, order=4):
+def bandpass(data, fs, low= 8, high= 30, order=4):
     nyq = 0.5 * fs
     b, a = butter(order, [low/nyq, high/nyq], btype='band')
 
@@ -154,7 +154,7 @@ def plot_time_and_freq(freqs, mag, data, now_time, label):
     plt.ylabel("Magnitude")
     plt.ylim(0, 1.1)
     plt.legend(loc = 'upper right')
-    plt.savefig(f"{now_time}_FILTERED_{label}_time_&_freq_domain.png")
+    plt.savefig(f"{int(now_time)}_FILTERED_{label}_time_&_freq_domain.png")
 
 def export_data_csv(collective_eeg_data, collective_eeg_time, now_time, label):
     df_time = pd.DataFrame({'timestamp': collective_eeg_time, 'ch_1_eeg_value': collective_eeg_data[:, 0], 'ch_2_eeg_value': collective_eeg_data[:, 1], 'ch_3_eeg_value': collective_eeg_data[:, 2], 'ch_4_eeg_value': collective_eeg_data[:, 3], 'ch_5_eeg_value': collective_eeg_data[:, 4]})
