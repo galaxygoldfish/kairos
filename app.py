@@ -168,7 +168,7 @@ def segment_data(collective_eeg_data, fs, label, n_samples, window_size = 2):
     for start in range(0, n_samples - window_samples + 1, window_samples):
         segment = collective_eeg_data[start:start+window_samples, :]  # shape: (window_samples, num_channels)
         segment_flat = segment.T.flatten()  # shape: (channels * window_samples)
-        segments.append(segment_flat)
+        segments.append(np.append(segment_flat, label))
 
     return segments, window_samples
 
@@ -177,7 +177,7 @@ def export_segmented_csv(collective_eeg_data, now_time, fs, label):
     segments, window_samples = segment_data(collective_eeg_data, fs, label, n_samples, window_size = 2)
     
     # Create column names
-    col_names = [f"ch{ch+1}_samp{i}" for ch in range(n_channels) for i in range(window_samples)]
+    col_names = [f"ch{ch+1}_samp{i}" for ch in range(n_channels) for i in range(window_samples)] + [label]
 
     df = pd.DataFrame(segments, columns=col_names)
 
