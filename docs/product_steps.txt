@@ -1,0 +1,51 @@
+1. Define and Collect Data
+a) Labeling Focus States
+You need labeled EEG data indicating when a person is in a “locked-in” hyperfocused state vs. other states. This can be done via:
+	Controlled cognitive tasks designed to induce high focus (e.g., math problems, coding tasks, meditation).
+  Self-reports or behavioral markers confirming focus.
+  Physiological markers (e.g., eye tracking, pupil dilation, task performance metrics).
+
+b) Data Collection
+Use EEG devices (Muse, OpenBCI, etc.) with enough channels. Collect raw EEG signals, preferably with high temporal resolution. Synchronize EEG with task timestamps and
+focus labels.
+
+2. Preprocessing
+Bandpass filtering to isolate classical EEG bands (Delta, Theta, Alpha, Beta, Gamma). Compute time-frequency representations such as:
+	Spectrograms (Short-Time Fourier Transform)
+	Wavelet transforms for better time-frequency localization
+Extract features:
+	Power spectral density (PSD) or magnitude per frequency band
+	Ratios between bands (e.g., Beta/Alpha ratio)
+	Phase locking or coherence if you want connectivity features
+
+3. Exploratory Data Analysis (EDA)
+Visualize averaged PSDs or spectrograms during locked-in vs. non-focused states. Use statistical tests (t-tests, ANOVA) to find frequencies/magnitudes that differ significantly.
+
+Check for consistent patterns across participants.
+
+4. Modeling Approach
+a) Feature-Based Models
+Classical ML: Use extracted features (frequency bands power, ratios, etc.) as input to:
+	Logistic regression
+	Support Vector Machines (SVM)
+	Random Forests / Gradient Boosting
+	Neural Networks (simple dense layers)
+This approach requires good handcrafted features and works well for interpretable models.
+
+b) Deep Learning on Raw or Spectrogram Data
+Use raw EEG time-series or spectrogram images as input to:
+	CNNs (Convolutional Neural Networks) for spatial/frequency patterns
+	RNNs or LSTM/GRU for temporal dependencies
+	Hybrid CNN-RNN architectures
+	Deep learning can automatically learn complex feature representations but requires more data.
+
+c) Unsupervised / Representation Learning
+If labels are noisy or unavailable, try clustering or dimensionality reduction (PCA, t-SNE) on frequency-magnitude features to discover natural “locked-in” clusters.
+	Autoencoders or contrastive learning to learn latent representations correlated with focus.
+
+5. Validation
+Cross-validate models on different subjects or sessions. Test generalizability to new tasks or environments. Compare against baselines (random, simpler models).
+
+6. Interpretation and Insights
+Use model explainability tools (e.g., SHAP, LIME) to identify which frequency bands or magnitude features are most predictive. Relate findings back to neuroscience
+literature about attention and EEG rhythms (e.g., Beta and Gamma increases often relate to focused attention).
