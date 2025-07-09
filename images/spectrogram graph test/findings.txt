@@ -1,0 +1,7 @@
+Big Ideas: Spectrogram Graph, Visualization Window, Utility Doubt, Non-Essential Feature
+
+when testing the spectrogram graph, you had to have a certain amount of time elapse
+to show the spectrogram. specifically, the amount of time you want to show in the
+graph. i didn't think it was useful because it doesn't add that much either. if
+we really wanted to, we could make a live version, but i don't think there's any
+point.
